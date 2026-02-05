@@ -1,4 +1,4 @@
-from app.interface.voice_input import listen
+from app.interface.whisper_input import listen
 from app.interface.voice_output import speak, stop
 from app.core.control_engine import control_loop
 from app.data.database import SessionLocal

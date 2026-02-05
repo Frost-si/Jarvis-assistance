@@ -19,6 +19,9 @@ def detect_intent(text: str):
     # ---- NEWS ----
     if any(w in t for w in ["news","headlines","updates"]):
         return "news"
+    #---detect_intent ----
+    if any(w in text.lower() for w in ["update","progress","%","percentage"]):
+        return " task_progress"
 
     # ---- AI (fallback) ----
     return "ai"

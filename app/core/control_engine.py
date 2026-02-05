@@ -23,6 +23,9 @@ def control_loop(text, db):
 
     # 2. Detect intent
     intent = detect_intent(text)
+    if intent =="task_progress":
+        result = handle_task_behavior(text,db)
+        return {"type": "task","output": result}
 
     # 3. Route by intent
     if intent == "news":
