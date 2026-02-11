@@ -52,5 +52,23 @@ Near-Future Feature: Vision & Robot Control
 - No training, no autonomy
 - Hard safety rules on robot
 Jarvis issues high-level commands; robot handles execution and safety.
+  # over all architecture
+  User (Voice / CLI)
+        ↓
+Interface Layer
+        ↓
+Intent Engine
+        ↓
+Decision / Control Engine
+        ↓
+Core Brain
+ ┌──────────────┬──────────────┐
+ │ Task Engine  │ State Engine │
+ └──────────────┴──────────────┘
+        ↓
+Action Executor
+        ↓
+Database / External Interfaces
+
 Guiding Principle
 Build boring, solid systems first. Intelligence is added only where it scales better than rules.
