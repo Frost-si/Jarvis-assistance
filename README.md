@@ -62,9 +62,8 @@ Intent Engine
 Decision / Control Engine
         ↓
 Core Brain
- ┌──────────────┬──────────────┐
+       
  │ Task Engine  │ State Engine │
- └──────────────┴──────────────┘
         ↓
 Action Executor
         ↓
