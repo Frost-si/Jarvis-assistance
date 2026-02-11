@@ -1,8 +1,8 @@
-Modular Voice Assistant – Architecture & Roadmap
-Overview
-An offline-first, modular, voice-based personal assistant designed to evolve safely over time. The
+# Modular Voice Assistant – Architecture & Roadmap
+# Overview
+**An offline-first, modular, voice-based personal assistant designed to evolve safely over time. The
 system starts fully deterministic and gradually incorporates AI for interpretation, prediction, and
-suggestions without ever allowing self-modifying code.
+suggestions without ever allowing self-modifying code.**
 Core Principles
 - System > AI
 - Offline-first operation
