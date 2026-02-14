@@ -1,5 +1,5 @@
-from app.interface.whisper_input import listen
-from app.interface.voice_output import speak, stop
+from app.interface.voice_input import listen
+from app.interface.voice_output import speak
 from app.core.control_engine import control_loop
 from app.data.database import SessionLocal
 
@@ -7,7 +7,7 @@ def run_voice_assistant():
     db = SessionLocal()
 
     while True:
-        stop()                 # 🔴 THIS IS THE KEY LINE (interrupt speech)
+        #stop()                 # 🔴 THIS IS THE KEY LINE (interrupt speech)
         text = listen()        # 🎤 now listen
 
         if not text:

@@ -1,23 +1,30 @@
+# app/interface/voice_input.py
 import sounddevice as sd
-import queue
-import json
-from vosk import Model, KaldiRecognizer
+import numpy as np
+from faster_whisper import WhisperModel
 
-q = queue.Queue()
+model = WhisperModel(
+    "base",
+    device="cpu",
+    compute_type="int8"
+)
 
-def callback(indata, frames, time, status):
-    q.put(bytes(indata))
-
-model = Model(r"C:\Users\frost\Desktop\AS\vosk-model-small-en-us-0.15")
-recognizer = KaldiRecognizer(model, 16000)
+SAMPLE_RATE = 16000
+DURATION = 5  # seconds
 
 def listen():
-    with sd.RawInputStream(samplerate=16000, blocksize = 8000, dtype='int16',
-                           channels=1, callback=callback):
-        while True:
-            data = q.get()
-            if recognizer.AcceptWaveform(data):
-                result = recognizer.Result()
-                text = json.loads(result).get("text", "")
-                if text:
-                    return text
+    print("🎤 Listening...")
+    audio = sd.rec(
+        int(DURATION * SAMPLE_RATE),
+        samplerate=SAMPLE_RATE,
+        channels=1,
+        dtype="float32"
+    )
+    sd.wait()
+
+    audio = np.squeeze(audio)
+
+    segments, _ = model.transcribe(audio, language="en")
+    text = " ".join(seg.text for seg in segments).strip()
+
+    return text if text else None
